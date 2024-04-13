@@ -1,12 +1,28 @@
 {% extends 'master.html' %}
+{% load static %}
 
 {% block title %}
-	Home
+    Home
 {% endblock %}
 
 {% block content %}
-	<div>
-        <h1>This is home page...</h1>
-        <p>This page is for me and i want to build a new app</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto" style="margin-top: 30px;padding: 20px;">
+                {% if data %}
+                    <div class="card" style="width: 700px;height: 400px;padding: 30px">
+                      <img src="{% static 'JgmWKvK-american-flag-desktop-wallpaper.jpg' %}" class="card-img-top" alt="...">
+                        <div class="card-body" style="padding: 20px">
+                            <h5 class="card-title">{{ data.0.ReportingArea }} Air quality is
+                                : {{ data.0.Category.Name }}</h5>
+                            <p class="card-text">AQI: {{ data.0.AQI }} | StateCode: {{ data.0.StateCode }}</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Something Went wrong...</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
+
 {% endblock %}
